@@ -11,6 +11,7 @@ public interface ICreditPersonalService {
 	Mono<EntityCreditPersonal> saveCreditPersonal(final EntityCreditPersonal creditPersonal);
 	Mono<EntityCreditPersonal> updCreditPersonal(final EntityCreditPersonal creditPersonal);
 	Mono<Void> dltCreditPersonal(final String id);
-	Mono<EntityCreditPersonal> CreditPersonalDni(final String dni);
+	Mono<EntityCreditPersonal> CreditPersonalNumCredi(final String numCredi);
+	Mono<EntityCreditPersonal> transacationCreditPersonal(final String numCredi,String tipo,Double cash);
 	
 }

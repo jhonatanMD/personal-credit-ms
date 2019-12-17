@@ -9,6 +9,8 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public interface ICreditPersonalRepository extends ReactiveMongoRepository<EntityCreditPersonal,String> {
-Mono<EntityCreditPersonal> findByDniCli(String dniCli);
+
+	Mono<EntityCreditPersonal> findByNumCredi(String numCredi);
+
 
 }
