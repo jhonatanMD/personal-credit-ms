@@ -18,6 +18,7 @@ public class EntityCreditPersonal {
 	private Double cashPay;
 	
 	private HeadLineEntity  customer;
+	
 	private List<EntityTransaction> transactions;
 
 

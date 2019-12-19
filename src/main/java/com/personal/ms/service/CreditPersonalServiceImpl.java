@@ -80,4 +80,10 @@ public class CreditPersonalServiceImpl  implements ICreditPersonalService{
 
 	}
 
+	@Override
+	public Flux<EntityCreditPersonal> CreditPersonalNumDoc(String numDoc) {
+		// TODO Auto-generated method stub
+		return repository.findByNumDoc(numDoc);
+	}
+
 }
