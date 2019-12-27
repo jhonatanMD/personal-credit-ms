@@ -1,5 +1,7 @@
 package com.personal.ms.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,6 +60,13 @@ public class ControllerCreditPersonal {
 	public Mono<EntityCreditPersonal> updTransancionesCreditPersonal(@PathVariable("numCred") String numCred 
 			,@PathVariable("tipo") String tipo ,@PathVariable("cash")  Double cash){
 			return imple.transacationCreditPersonal(numCred, tipo, cash);
+	}
+	
+	@PostMapping("/creditPersonalByNumDocList/{status}")
+	public Flux<EntityCreditPersonal> creditCardByNumDocList(@RequestBody List<String> numDoc
+			,@PathVariable("status") String status){
+		return imple.CreditPersonalNumDocList(numDoc,status);
+		
 	}
 }
 

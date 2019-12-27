@@ -1,6 +1,7 @@
 package com.personal.ms.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -31,7 +32,8 @@ public class CreditPersonalServiceImpl  implements ICreditPersonalService{
 
 	@Override
 	public Mono<EntityCreditPersonal> saveCreditPersonal(EntityCreditPersonal creditPersonal) {
-		// TODO Auto-generated method stub
+		creditPersonal.setDateCredit(addDates(new Date(),1));
+		creditPersonal.setStatus("0");
 		return repository.save(creditPersonal);
 	}
 
@@ -86,4 +88,18 @@ public class CreditPersonalServiceImpl  implements ICreditPersonalService{
 		return repository.findByNumDoc(numDoc);
 	}
 
+	@Override
+	public Flux<EntityCreditPersonal> CreditPersonalNumDocList(List<String> numDoc, String status) {
+		// TODO Auto-generated method stub
+		return repository.findByNumDocList(numDoc, status);
+	}
+
+	
+	public Date addDates(Date date , int month){
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.MONTH, month);
+		return calendar.getTime();
+	}
 }

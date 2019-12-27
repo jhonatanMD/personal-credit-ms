@@ -1,5 +1,7 @@
 package com.personal.ms.service;
 
+import java.util.List;
+
 import com.personal.ms.model.EntityCreditPersonal;
 
 import reactor.core.publisher.Flux;
@@ -14,5 +16,5 @@ public interface ICreditPersonalService {
 	Mono<EntityCreditPersonal> CreditPersonalNumCredi(final String numCredi);
 	Flux<EntityCreditPersonal> CreditPersonalNumDoc(final String numDoc);
 	Mono<EntityCreditPersonal> transacationCreditPersonal(final String numCredi,String tipo,Double cash);
-	
+	Flux<EntityCreditPersonal> CreditPersonalNumDocList(List<String> numDoc,String status);
 }

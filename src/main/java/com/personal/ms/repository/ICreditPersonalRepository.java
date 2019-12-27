@@ -1,5 +1,7 @@
 package com.personal.ms.repository;
 
+import java.util.List;
+
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
@@ -16,4 +18,7 @@ public interface ICreditPersonalRepository extends ReactiveMongoRepository<Entit
 
 	@Query("{'customer.dniH':?0}")
 	Flux<EntityCreditPersonal> findByNumDoc(String numDoc);
+	
+	@Query("{'customer.dniH': {$in:[ ?0 ]} , 'status':?1}")
+	Flux<EntityCreditPersonal> findByNumDocList(List<String> numDoc , String status);
 }

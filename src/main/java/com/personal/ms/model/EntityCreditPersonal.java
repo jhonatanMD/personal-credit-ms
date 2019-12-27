@@ -1,9 +1,13 @@
 package com.personal.ms.model;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 @Document(collection = "CreditPersonal")
 public class EntityCreditPersonal {
@@ -19,9 +23,12 @@ public class EntityCreditPersonal {
 	
 	private HeadLineEntity  customer;
 	
+	@JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
+	private Date dateCredit;
+	
 	private List<EntityTransaction> transactions;
 
-
+	private String status;
 	public String getCodCur() {
 		return codCur;
 	}
@@ -63,6 +70,14 @@ public class EntityCreditPersonal {
 	public void setCustomer(HeadLineEntity customer) {
 		this.customer = customer;
 	}
+	
+	public Date getDateCredit() {
+		return dateCredit;
+	}
+
+	public void setDateCredit(Date dateCredit) {
+		this.dateCredit = dateCredit;
+	}
 
 	public List<EntityTransaction> getTransactions() {
 		return transactions;
@@ -72,5 +87,14 @@ public class EntityCreditPersonal {
 		this.transactions = transactions;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	
 
 }
