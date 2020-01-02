@@ -1,5 +1,7 @@
 package com.personal.ms.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,8 +24,7 @@ public class CreditPersonalServiceImpl  implements ICreditPersonalService{
 	ICreditPersonalRepository repository;
 	EntityTransaction transaction;
 	List<EntityTransaction> listTransaction;
-	Date dt = new Date();
-	
+	SimpleDateFormat format;
 	@Override
 	public Flux<EntityCreditPersonal> allCreditPersonal() {
 		// TODO Auto-generated method stub
@@ -33,6 +34,7 @@ public class CreditPersonalServiceImpl  implements ICreditPersonalService{
 	@Override
 	public Mono<EntityCreditPersonal> saveCreditPersonal(EntityCreditPersonal creditPersonal) {
 		creditPersonal.setDateCredit(addDates(new Date(),1));
+		creditPersonal.setDateOpen(new Date());
 		creditPersonal.setStatus("0");
 		return repository.save(creditPersonal);
 	}
@@ -70,7 +72,7 @@ public class CreditPersonalServiceImpl  implements ICreditPersonalService{
 					transaction.setType(tipo);
 					 transaction.setCashO(cash);
 					 transaction.setCashT(p.getCash());
-					 transaction.setDateTra(dt);
+					 transaction.setDateTra(new Date());
 					listTransaction = new ArrayList<>();
 					p.getTransactions().forEach(transac-> {
 						listTransaction.add(transac);
@@ -101,5 +103,13 @@ public class CreditPersonalServiceImpl  implements ICreditPersonalService{
 		calendar.setTime(date);
 		calendar.add(Calendar.MONTH, month);
 		return calendar.getTime();
+	}
+
+	@Override
+	public Flux<EntityCreditPersonal> findByBankAndDateOpenBetween(String bank, String dt1, String dt2)
+			throws ParseException {
+		// TODO Auto-generated method stub
+		format = new SimpleDateFormat("yyyy-MM-dd");
+		return repository.findByBankAndDateOpenBetween(bank, format.parse(dt1), format.parse(dt2));
 	}
 }

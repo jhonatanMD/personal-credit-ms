@@ -1,5 +1,7 @@
 package com.personal.ms.repository;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.Query;
@@ -21,4 +23,6 @@ public interface ICreditPersonalRepository extends ReactiveMongoRepository<Entit
 	
 	@Query("{'customer.dniH': {$in:[ ?0 ]} , 'status':?1}")
 	Flux<EntityCreditPersonal> findByNumDocList(List<String> numDoc , String status);
+	
+	Flux<EntityCreditPersonal> findByBankAndDateOpenBetween(String bank,Date dt1 ,Date dt2) throws ParseException;
 }

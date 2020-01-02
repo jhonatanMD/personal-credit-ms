@@ -3,6 +3,8 @@ package com.personal.ms.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -22,6 +24,12 @@ public class EntityCreditPersonal {
 	private Double cashPay;
 	
 	private HeadLineEntity  customer;
+	
+	private String bank;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
+	@NotNull
+	private Date dateOpen;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
 	private Date dateCredit;
@@ -71,6 +79,22 @@ public class EntityCreditPersonal {
 		this.customer = customer;
 	}
 	
+	public String getBank() {
+		return bank;
+	}
+
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+
+	public Date getDateOpen() {
+		return dateOpen;
+	}
+
+	public void setDateOpen(Date dateOpen) {
+		this.dateOpen = dateOpen;
+	}
+
 	public Date getDateCredit() {
 		return dateCredit;
 	}

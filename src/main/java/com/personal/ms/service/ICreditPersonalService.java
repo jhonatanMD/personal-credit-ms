@@ -1,5 +1,6 @@
 package com.personal.ms.service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import com.personal.ms.model.EntityCreditPersonal;
@@ -17,4 +18,5 @@ public interface ICreditPersonalService {
 	Flux<EntityCreditPersonal> CreditPersonalNumDoc(final String numDoc);
 	Mono<EntityCreditPersonal> transacationCreditPersonal(final String numCredi,String tipo,Double cash);
 	Flux<EntityCreditPersonal> CreditPersonalNumDocList(List<String> numDoc,String status);
+	Flux<EntityCreditPersonal> findByBankAndDateOpenBetween(String bank,String dt1 ,String dt2) throws ParseException;
 }

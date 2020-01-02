@@ -1,5 +1,6 @@
 package com.personal.ms.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,11 @@ public class ControllerCreditPersonal {
 		return imple.allCreditPersonal();
 	}
 	
+	@GetMapping("/getCreditPersonalDates/{dt1}/{dt2}/{bank}")
+	Flux<EntityCreditPersonal> getCreditPersonalDates(@PathVariable("dt1") String dt1
+			,@PathVariable("dt2") String dt2,@PathVariable("bank") String bank) throws ParseException{	
+		return imple.findByBankAndDateOpenBetween(bank, dt1, dt2);
+	}
 	
 	@GetMapping("/getCreditPersonalNumDoc/{numDoc}")
 	Flux<EntityCreditPersonal> getCreditPersonalNumDoc(@PathVariable("numDoc") String numDoc){
